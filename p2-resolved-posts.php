@@ -255,9 +255,13 @@ class P2_Resolved_Posts {
 	 */
 	function get_current_state( $post_id ) {
 		$state = wp_get_object_terms( $post_id, self::taxonomy );
-		if ( empty( $state ) || is_wp_error( $state ) )
+		if ( empty( $state ) || is_wp_error( $state ) ) {
 			return false;
-		return array_shift( wp_filter_object_list( $this->states, array( 'slug' => $state[0]->slug ) ) );
+		}
+
+		$filtered_states = wp_filter_object_list( $this->states, array( 'slug' => $state[0]->slug ) );
+
+		return array_shift( $filtered_states );
 	}
 
 	/**
