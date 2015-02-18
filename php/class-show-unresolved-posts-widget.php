@@ -239,7 +239,6 @@
 		 		if ( $unresolved_posts->found_posts > $posts_per_page )
 		 			echo '&nbsp;&nbsp;<a href="#" class="p2-resolved-posts-next-posts p2-resolved-posts-pagination-link">' . __( '&rarr;', 'p2-resolved-posts' ) . '</a>';
 		 		echo '</p>';
-		 		echo '<span class="hidden p2-resolved-posts-ppp">' . esc_html( $posts_per_page ) . '</span>';
  				echo '<ul>';
  				while( $unresolved_posts->have_posts() ) {
  					$unresolved_posts->the_post();
@@ -250,7 +249,9 @@
 					else
 						echo ' class="active"';
 					echo '>';
+					echo '<span class="unresolved-avatar">';
 					echo get_avatar( $post->post_author, 32 );
+					echo '</span>';
 					echo '<div class="inner"><a href="' . get_permalink() . '" title="' . esc_attr( get_the_excerpt() ) . '">' . get_the_title() . '</a><br />';
 					$post_timestamp = strtotime( $post->post_date );
 					echo '<span>' . sprintf( __( '%s old', 'p2-resolved-posts' ), esc_html( human_time_diff( $post_timestamp ) ) ) . ', ';
