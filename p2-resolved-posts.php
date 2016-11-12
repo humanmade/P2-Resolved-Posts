@@ -216,7 +216,9 @@ class P2_Resolved_Posts {
 	 * Given a slug, get the state
 	 */
 	function get_state( $slug ) {
-		return array_shift( wp_filter_object_list( $this->states, array( 'slug' => $slug ) ) );
+
+		$filtered_states = wp_filter_object_list( $this->states, array( 'slug' => $slug ) );
+		return array_shift( $filtered_states );
 	}
 
 	/**
